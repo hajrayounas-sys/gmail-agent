@@ -10,6 +10,12 @@ An AI-powered Gmail assistant that converts natural language instructions into p
 * Human-in-the-loop approval before sending
 * Email delivery through the Gmail API using OAuth 2.0 authentication
 
+## Version
+
+Current Version: V1
+
+This repository contains the first version of the Gmail Agent project. Future versions will introduce additional agent capabilities, improved reliability, and expanded email workflows.
+
 ## Project Structure
 
 ```text
