@@ -15,10 +15,9 @@ def draft_email(user_request):
             {
                 "role": "system",
                 "content": """You are a professional email assistant. 
-                Return ONLY a valid JSON object. 
+                Return ONLY a valid JSON object.
                 The JSON must contain exactly these keys:
-                'to', 'subject', 'body'. 
-                Extract the recipient email address from the user's request. 
+                'subject', 'body'.
                 Do not include markdown. 
                 Do not include explanations. 
                 Do not include any text outside the JSON."""
@@ -34,3 +33,4 @@ def draft_email(user_request):
     response.choices[0].message.content
 )
     return email_data   
+    

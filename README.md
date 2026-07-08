@@ -2,13 +2,25 @@
 
 An AI-powered Gmail assistant that converts natural language instructions into professional emails, requests user approval, and sends the email through the Gmail API.
 
+## Version
+
+Current Version: V2
+
 ## Features
 
-* Natural language email drafting using Hugging Face Inference API
-* Extraction of recipient details from natural language instructions
-* Structured email generation (`to`, `subject`, `body`)
-* Human-in-the-loop approval before sending
-* Email delivery through the Gmail API using OAuth 2.0 authentication
+- Natural language email drafting powered by the Hugging Face Inference API
+- Contact memory for frequently used recipients
+- Automatic retrieval of saved contacts from local memory
+- Recipient extraction using Python regular expressions
+- Structured email generation with `subject` and `body` fields
+- Human-in-the-loop approval before sending emails
+- Email delivery through the Gmail API using OAuth 2.0 authentication
+
+### Supported Commands
+
+- `Email my professor that I am sick.`
+- `Email Alice inviting her to a party.`
+- `Email professor@uni.edu about the assignment.`
 
 ## Version
 
@@ -27,6 +39,8 @@ gmail-agent/
 ├── gmail_agent.py        # Main agent workflow
 ├── send_email.py         # Gmail sending functionality
 ├── setup_gmail_auth.py   # OAuth authentication setup
+├── memory.py             # read, write, load contacts
+├── contacts.json         # stores contacts as json object
 ├── requirements.txt
 └── README.md
 ```
@@ -36,10 +50,13 @@ gmail-agent/
 ```text
 User Instruction
         ↓
+Recipient Resolution
+(Email Address → Memory Lookup → User Prompt)
+        ↓
 AI Email Drafting
         ↓
 Structured Output
-(to, subject, body)
+(subject, body)
         ↓
 User Approval
         ↓
@@ -54,24 +71,37 @@ Input:
 
 Email my professor that I was sick and will submit the assignment tomorrow.
 
-Generated Output:
+Memory:
 
-```
+```json
 {
-  "to": "professor@example.com",
-  "subject": "Assignment Submission Update",
-  "body": "..."
+  "professor": "professor@university.edu"
 }
 ```
 
-The user reviews the draft and decides whether to send it.
+Generated Draft:
+
+```text
+To: professor@university.edu
+
+Subject: Assignment Submission Update
+
+Dear Professor,
+
+I hope you are doing well. I was unwell and was unable to complete the assignment on time. I will submit the assignment tomorrow and appreciate your understanding.
+
+Kind regards,
+[Your Name]
+```
+
+The recipient is resolved through memory or user input, the AI generates the email content, and the user reviews the draft before deciding whether to send it.
 
 ## Requirements
 
-* Python 3.12+
-* Gmail API enabled in Google Cloud
-* OAuth 2.0 credentials
-* Hugging Face API token
+- Python 3.12+
+- Gmail API enabled in Google Cloud
+- OAuth 2.0 credentials
+- Hugging Face API token
 
 ## Setup
 
@@ -103,27 +133,27 @@ python gmail_agent.py
 
 ## Technologies
 
-* Python
-* Gmail API
-* OAuth 2.0
-* Hugging Face Inference API (Llama 3.1 8B Instruct)
-* Large Language Models (LLMs)
+- Python
+- Gmail API
+- OAuth 2.0
+- Hugging Face Inference API (Llama 3.1 8B Instruct)
+- Large Language Models (LLMs)
 
 ## Future Enhancements
 
-* Contact memory and retrieval
-* Email summarization
-* Reply drafting
-* Multi-step agent workflows
-* Inbox management capabilities
+- Support AI-assisted recipient extraction.
+- Email summarization
+- Reply drafting
+- Multi-step agent workflows
+- Inbox management capabilities
 
 ## Security
 
 Do not commit the following files to GitHub:
 
-* `.env`
-* `credentials.json`
-* `token.json`
+- `.env`
+- `credentials.json`
+- `token.json`
 
 These files contain API keys and authentication credentials and should remain private.
 
