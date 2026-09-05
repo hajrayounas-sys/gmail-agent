@@ -1,6 +1,3 @@
-Absolutely, love. I’ll keep the **content and meaning the same**, but clean up the Markdown formatting, spacing, escaping, headings, tables, and code blocks so you can copy it directly into `README.md`.
-
-````markdown
 # Gmail Agent
 
 An AI-powered Gmail assistant that converts natural language instructions into professional emails, resolves recipients using semantic search over saved contacts, requests user approval, and sends the email through the Gmail API.
@@ -58,7 +55,6 @@ gmail-agent/
 ├── requirements.txt
 └── README.md
 ```
-````
 
 **Note:** `chroma_db/` is generated automatically the first time `contact_store.py` runs, and is excluded from version control via `.gitignore`.
 
@@ -206,6 +202,3 @@ These contain API keys, authentication credentials, or locally generated data, a
 ## Author
 
 Hajra Younas
-
-```
-```
