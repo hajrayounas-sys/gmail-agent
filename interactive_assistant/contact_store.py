@@ -1,3 +1,8 @@
+from pathlib import Path
+import sys
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 from dotenv import load_dotenv
 load_dotenv()
 from sentence_transformers import SentenceTransformer
@@ -8,7 +13,8 @@ import re
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 # This creates (or opens, if it already exists) a folder on disk
-chroma_client = chromadb.PersistentClient(path="./chroma_db")
+CHROMA_PATH = str(Path(__file__).parent / "chroma_db")
+chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
 
 # A "collection" is like a table in a normal database.
 # get_or_create_collection means: if it already exists, reuse it;

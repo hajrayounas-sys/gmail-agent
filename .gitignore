@@ -1,7 +1,22 @@
 .venv/
+env/
+__pycache__/
+*.py[cod]
+
 .env
 credentials.json
 token.json
-chroma_db/
-__pycache__/
-*.pyc
+
+# Local agent state and backups
+agent_state.db
+agent_state_backup.db
+agent_state_corrupt_*.db
+*.sqlite
+*.sqlite3
+contacts_backup_before_reorganization.json
+
+# Local vector database
+**/chroma_db/
+
+# Python and editor artifacts
+.vscode/
